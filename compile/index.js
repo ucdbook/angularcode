@@ -7,13 +7,25 @@ var path = require('path');
 const chalk = require('chalk');
 var index = 0;
 process.env.compileJson = path.join(process.argv[1].replace('\\bin\\angularcode',''), '/review/compile.json');
+let setAlertError = function(name) {
+	clearTimeout(name);
+	return setTimeout(function() {
+		console.log(chalk.red('项目中缺少abc.json配置文件'));
+	}, 1000);
+}
+let alertError;
+let dirIndex = 0;
 let isExistsFn = function(currentPath) {
+	alertError = setAlertError(alertError);
 	fs.exists(path.join(currentPath, '/abc.json'), function(exists) {  
 		let isExists = exists ? true : false;
 		index++;
 		if(!isExists) {
 			currentPath = path.join(currentPath , '../')
-			isExistsFn(currentPath);	
+			dirIndex++;
+			if(dirIndex < 10) {
+				isExistsFn(currentPath);
+			}				
 		}
 		else{
 			process.env.configJson = path.join(currentPath, '/abc.json');

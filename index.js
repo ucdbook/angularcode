@@ -1,4 +1,15 @@
-console.log(11111);
+var program = require('commander');
+const path = require('path');
+const pgk = require('./package.json');
+
+// dirs to find plugins
+program
+.version(pgk.version)
+.option('-r, --review', 'review current component in the demo;')
+.option('-p, --push', 'push current component to the demo web;')
+.parse(process.argv);
+
+
 var isReView = process.argv[2] === 'review';
 let requireModule;
 
@@ -8,11 +19,11 @@ else {
   process.env.PORT = 3333;
 }
 switch(process.argv[2]) {
-    case 'review':
-    requireModule = require('./compile/index')
+    case '-r' || '--review':
+    requireModule = require('./compile')
     break;
-    case 'push':
-    requireModule = require('./push/index');
+    case '-p' || '--push':
+    requireModule = require('./push');
     break;
     default:
     requireModule = require('./src/index');
