@@ -28,6 +28,7 @@ let isExistsFn = function(currentPath) {
 			}				
 		}
 		else{
+			clearTimeout(alertError);
 			process.env.configJson = path.join(currentPath, '/abc.json');
 			let server = require('../server/index');
 			server.action({
@@ -35,8 +36,10 @@ let isExistsFn = function(currentPath) {
 				open: true,
 				reload: false
 			});
-			c.exec(`start http://127.0.0.1:${process.env.port}/view/#/compile/compile`);
-			console.log(chalk.green('open http://127.0.0.1:${process.env.port}/view/#/compile/compile'));
+			console.log('c=',c);
+			c.exec(`start http://127.0.0.1:${process.env.PORT}/view/#/compile/compile`);
+			c.exec(`open http://127.0.0.1:${process.env.PORT}/view/#/compile/compile`);
+			console.log(chalk.green('open http://127.0.0.1:'+process.env.PORT+'/view/#/compile/compile'));
 		}
 	});
 }

@@ -7,11 +7,14 @@ var ReplaceModule = function(options, callback) {
 	this.jsons = [];
 	this.data = {};
 	var _this = this;
+
 	this.each(options.projects, function(index, path) {
 		_this.readDirs(path + '/');
 	});
 	
 	this.callback = callback || function() {};
+	//this.writeJson();
+	
 }
 ReplaceModule.prototype = {
 	each: function(data, callback) {
@@ -94,7 +97,7 @@ ReplaceModule.prototype = {
 		if(path) {
 			this.fs.writeFile(path, text, function() {
 				_this.jsonsLength = _this.jsons.length;
-				//console.log('success:', path);
+				console.log('success:', path);
 			});
 		}
 		return text;
@@ -108,6 +111,7 @@ ReplaceModule.prototype = {
 			var name = text.match(/app.directive\((\'|\")\w+(\'|\")\,/);
 			name = name[0].match(/(\'|\")\w+(\'|\")/);
 			name = name[0].replace(/(\'|\")/g, '');
+			data.keyName = name;
 			data.name = this.getLineValue('@name', text)[0] || name;
 			data.author = this.getLineValue('@author', text)[0];
 			data.lastBy = this.getLineValue('@lastBy', text)[0];
