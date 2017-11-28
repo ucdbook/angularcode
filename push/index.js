@@ -32,7 +32,6 @@ let write = function(compilePath, oldJson) {
 let isExistsFn = function(currentPath) {
     isNotHas = false;
 	alertError = setAlertError(alertError);
-	console.log(112, currentPath)
 	fs.exists(path.join(currentPath, '/abc.json'), function(exists) {  
 		let isExists = exists ? true : false;
 		index++;
@@ -60,7 +59,6 @@ let isExistsFn = function(currentPath) {
                 type: 'angularDirective',
 				jsonPath: ''
 			}).jsons;
-			console.log()
 			var compilePathA = path.join(compilePath, '');
 			compilePathA = compilePathA.replace(/\\/g, '/');
 			let oldJson = require(compilePathA);
@@ -74,7 +72,6 @@ let isExistsFn = function(currentPath) {
 					var pz = new PZ(process.cwd()+'\.npm-init.js', {yes: true})
 					pz.backupFile = def;
 					pz.on('data', function (data) {
-					  console.log(555,data.go, data.go === 'Y' || data.go === 'y')
 					  if(data.go === 'Y' || data.go === 'y') {
 						oldJson.map((oldItem, index) => {
 							if(oldItem.keyName === newItem.keyName) {
@@ -93,7 +90,6 @@ let isExistsFn = function(currentPath) {
 			})
 
 			if(isNotHas) {
-				console.log(888)
 				write(compilePath, oldJson);
 			}
 					

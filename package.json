@@ -1,7 +1,7 @@
 {
   "name": "angularcode",
   "version": "0.0.35",
-  "description": "angular directive to review by code",
+  "description": "angular directive to review by note",
   "main": "index.js",
   "bin": {
     "angularcode": "./bin/angularcode"

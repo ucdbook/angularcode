@@ -1,4 +1,3 @@
-exports.go =  prompt('是否替换？', 'Y', function (data) {
-  console.log(777,data);
+exports.go =  prompt('组件库中已经有此组件配置数据，是否需要替换？', 'Y', function (data) {
   return data;
 });

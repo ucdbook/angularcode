@@ -36,7 +36,6 @@ let isExistsFn = function(currentPath) {
 				open: true,
 				reload: false
 			});
-			console.log('c=',c);
 			c.exec(`start http://127.0.0.1:${process.env.PORT}/view/#/compile/compile`);
 			c.exec(`open http://127.0.0.1:${process.env.PORT}/view/#/compile/compile`);
 			console.log(chalk.green('open http://127.0.0.1:'+process.env.PORT+'/view/#/compile/compile'));
